@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 
 import { SearchBar } from './SearchBar/SearchBar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
@@ -11,78 +11,73 @@ import { fetchImages, per_page } from 'services/api';
 import { AppWrapper } from './App.styled';
 import { GlobalStyle } from './GlobalStyle';
 
-export class App extends Component {
-  state = {
-    query: '',
-    images: [],
-    page: null,
-    loadMore: false,
+export const App = () => {
+  const [query, setQuery] = useState('');
+  const [prevQuery, setPrevQuery] = useState('');
+  const [images, setImages] = useState([]);
+  const [page, setPage] = useState(null);
+  const [loadMore, setLoadMore] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    isLoading: false,
-    error: null,
-  };
-
-  async componentDidUpdate(prevProps, prevState) {
-    const prevQuery = prevState.query;
-    const currentQuery = this.state.query;
-    const prevPage = prevState.page;
-    const currentPage = this.state.page;
-
-    if (prevQuery === currentQuery && prevPage === currentPage) {
+  useEffect(() => {
+    if (!query) {
       return;
     }
 
-    this.setState({ isLoading: true });
+    const fetchData = async () => {
+      setIsLoading(true);
 
-    try {
-      const data = await fetchImages(currentQuery, currentPage);
-      const loadMore = currentPage * per_page < data.totalHits;
+      try {
+        const data = await fetchImages(query, page);
+        const loadMore = page * per_page < data.totalHits;
 
-      this.setState(prevState => ({
-        images: [...prevState.images, ...data.hits],
-        loadMore,
-      }));
-    } catch (error) {
-      this.setState({ error });
-    } finally {
-      this.setState({ isLoading: false });
-    }
-  }
+        setImages(prevState => [...prevState, ...data.hits]);
+        setLoadMore(loadMore);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  searchFormSubmit = query => {
-    if (this.state.query === query) {
+    fetchData();
+  }, [query, page]);
+
+  const searchFormSubmit = query => {
+    if (prevQuery === query) {
       return;
     }
 
-    this.setState({ query, images: [], page: 1 });
+    setPrevQuery(query);
+    setQuery(query);
+    setImages([]);
+    setPage(1);
   };
 
-  incrementPage = () => {
-    this.setState(prevState => ({ page: prevState.page + 1 }));
+  const incrementPage = () => {
+    setPage(prevState => prevState + 1);
   };
 
-  render() {
-    const { query, images, isLoading, error, loadMore } = this.state;
-    const isEmptyResults = query && !error && !isLoading && !images.length;
-    const isNeedLoadMore = !isLoading && loadMore;
+  const isEmptyResults = query && !error && !isLoading && !images.length;
+  const isNeedLoadMore = !isLoading && loadMore;
 
-    return (
-      <AppWrapper>
-        <GlobalStyle />
+  return (
+    <AppWrapper>
+      <GlobalStyle />
 
-        <SearchBar onSubmit={this.searchFormSubmit} />
-        {images.length > 0 && <ImageGallery images={images} />}
-        {isLoading && <Loader />}
-        {isEmptyResults && (
-          <Placeholder query={query}>
-            No any results by <b>"{query}"</b> request
-          </Placeholder>
-        )}
-        {error && (
-          <Placeholder query={query}>Whooops.. {error.message}</Placeholder>
-        )}
-        {isNeedLoadMore && <LoadMoreBtn onClick={this.incrementPage} />}
-      </AppWrapper>
-    );
-  }
-}
+      <SearchBar onSubmit={searchFormSubmit} />
+      {images.length > 0 && <ImageGallery images={images} />}
+      {isLoading && <Loader />}
+      {isEmptyResults && (
+        <Placeholder query={query}>
+          No any results by <b>"{query}"</b> request
+        </Placeholder>
+      )}
+      {error && (
+        <Placeholder query={query}>Whooops.. {error.message}</Placeholder>
+      )}
+      {isNeedLoadMore && <LoadMoreBtn onClick={incrementPage} />}
+    </AppWrapper>
+  );
+};

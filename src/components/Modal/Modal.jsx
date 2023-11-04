@@ -1,39 +1,35 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 
 import { Overlay, StyledModal } from './Modal.styled';
 
-export class Modal extends Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDowm);
+export const Modal = ({ img, tags, onClose }) => {
+  useEffect(() => {
+    const handleKeyDowm = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDowm);
     document.body.style.overflow = 'hidden';
-  }
 
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDowm);
-    document.body.style.overflow = 'auto';
-  }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDowm);
+      document.body.style.overflow = 'auto';
+    };
+  }, [onClose]);
 
-  handleKeyDowm = e => {
-    if (e.code === 'Escape') {
-      this.props.onClose();
-    }
-  };
-
-  handleOverlayClick = e => {
+  const handleOverlayClick = e => {
     if (e.target === e.currentTarget) {
-      this.props.onClose();
+      onClose();
     }
   };
 
-  render() {
-    const { img, tags } = this.props;
-
-    return (
-      <Overlay onClick={this.handleOverlayClick}>
-        <StyledModal>
-          <img src={img} alt={tags} />
-        </StyledModal>
-      </Overlay>
-    );
-  }
-}
+  return (
+    <Overlay onClick={handleOverlayClick}>
+      <StyledModal>
+        <img src={img} alt={tags} />
+      </StyledModal>
+    </Overlay>
+  );
+};
