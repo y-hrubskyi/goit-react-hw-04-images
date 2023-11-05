@@ -13,7 +13,6 @@ import { GlobalStyle } from './GlobalStyle';
 
 export const App = () => {
   const [query, setQuery] = useState('');
-  const [prevQuery, setPrevQuery] = useState('');
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(null);
   const [loadMore, setLoadMore] = useState(false);
@@ -44,13 +43,12 @@ export const App = () => {
     fetchData();
   }, [query, page]);
 
-  const searchFormSubmit = query => {
-    if (prevQuery === query) {
+  const searchFormSubmit = searchQuery => {
+    if (query === searchQuery) {
       return;
     }
 
-    setPrevQuery(query);
-    setQuery(query);
+    setQuery(searchQuery);
     setImages([]);
     setPage(1);
   };
