@@ -24,7 +24,7 @@ export const App = () => {
       return;
     }
 
-    const fetchData = async () => {
+    const fetchData = async (query, page) => {
       setIsLoading(true);
 
       try {
@@ -40,7 +40,7 @@ export const App = () => {
       }
     };
 
-    fetchData();
+    fetchData(query, page);
   }, [query, page]);
 
   const searchFormSubmit = searchQuery => {
