@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { BiSearch } from 'react-icons/bi';
 
 export const Searchbar = styled.header`
@@ -12,11 +11,11 @@ export const Searchbar = styled.header`
   justify-content: center;
   align-items: center;
   min-height: 64px;
-  padding: 12px 24px;
+  padding: ${p => p.theme.spacing(3)} ${p => p.theme.spacing(6)};
 
-  color: #fff;
+  color: ${p => p.theme.colors.white};
 
-  background-color: #3f51b5;
+  background-color: ${p => p.theme.colors.accent};
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
@@ -27,8 +26,8 @@ export const Form = styled.form`
   width: 100%;
   max-width: 600px;
 
-  background-color: #fff;
-  border-radius: 3px;
+  background-color: ${p => p.theme.colors.white};
+  border-radius: ${p => p.theme.radii.sm};
   overflow: hidden;
 `;
 
@@ -36,13 +35,13 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 0 0 6px;
+  padding: 0 0 0 ${p => p.theme.spacing(2)};
 
   border: 0;
   opacity: 0.5;
   outline: none;
 
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: ${p => p.theme.transition('opacity')};
 
   &:hover {
     opacity: 1;
@@ -57,8 +56,8 @@ export const IconSearch = styled(BiSearch)`
 export const Input = styled.input`
   display: inline-block;
   width: 100%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: ${p => p.theme.spacing(1)};
+  padding-right: ${p => p.theme.spacing(1)};
 
   font: inherit;
   font-size: 20px;

@@ -1,23 +1,24 @@
 import { useState } from 'react';
 
-import { Modal } from 'components/Modal/Modal';
+import { ImageModal } from 'components/ImageModal/ImageModal';
 import { Image, Item } from './ImageGalleryItem.styled';
 
 export const ImageGalleryItem = ({ smallImg, largeImg, tags }) => {
-  const [isOpenModal, SetisOpenModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
-    SetisOpenModal(prevState => !prevState);
+    setIsModalOpen(prevState => !prevState);
   };
 
   return (
-    <>
-      <Item>
-        <Image src={smallImg} alt={tags} onClick={toggleModal} />
-      </Item>
-      {isOpenModal && (
-        <Modal img={largeImg} tags={tags} onClose={toggleModal} />
-      )}
-    </>
+    <Item>
+      <Image src={smallImg} alt={tags} onClick={toggleModal} />
+      <ImageModal
+        img={largeImg}
+        tags={tags}
+        onClose={toggleModal}
+        isOpen={isModalOpen}
+      />
+    </Item>
   );
 };

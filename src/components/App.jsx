@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
-import { SearchBar } from './SearchBar/SearchBar';
-import { ImageGallery } from './ImageGallery/ImageGallery';
-import { Loader } from './Loader/Loader';
-import { Placeholder } from './Placeholder/Placeholder';
-import { LoadMoreBtn } from './LoadMoreBtn/LoadMoreBtn';
+import { SearchBar } from 'components/SearchBar/SearchBar';
+import { ImageGallery } from 'components/ImageGallery/ImageGallery';
+import { Loader } from 'components/Loader/Loader';
+import { Placeholder } from 'components/Placeholder/Placeholder';
+import { LoadMoreBtn } from 'components/LoadMoreBtn/LoadMoreBtn';
 
-import { fetchImages, per_page } from 'services/api';
-
-import { AppWrapper } from './App.styled';
 import { GlobalStyle } from './GlobalStyle';
+import { Layout } from './App.styled';
+
+import * as API from 'services/api';
 
 export const App = () => {
   const [query, setQuery] = useState('');
@@ -24,15 +25,24 @@ export const App = () => {
       return;
     }
 
-    const fetchData = async (query, page) => {
-      setIsLoading(true);
-
+    const fetchData = async () => {
       try {
-        const data = await fetchImages(query, page);
-        const loadMore = page * per_page < data.totalHits;
+        setIsLoading(true);
+        setError(null);
+
+        const searchQuery = query.slice(query.indexOf('/') + 1);
+        const data = await API.fetchImages(searchQuery, page, {});
+        const loadMore = page * API.per_page < data.totalHits;
 
         setImages(prevState => [...prevState, ...data.hits]);
         setLoadMore(loadMore);
+
+        if (page === 1 && data.totalHits) {
+          toast.success(`Found ${data.totalHits} results`);
+        }
+        if (!loadMore && page !== 1) {
+          toast.success("That's all");
+        }
       } catch (error) {
         setError(error);
       } finally {
@@ -40,42 +50,38 @@ export const App = () => {
       }
     };
 
-    fetchData(query, page);
+    fetchData();
   }, [query, page]);
 
-  const searchFormSubmit = searchQuery => {
-    if (query === searchQuery) {
-      return;
-    }
-
-    setQuery(searchQuery);
+  const searchFormSubmit = query => {
+    setQuery(`${Date.now()}/${query}`);
     setImages([]);
     setPage(1);
   };
 
-  const incrementPage = () => {
+  const handleLoadMore = () => {
     setPage(prevState => prevState + 1);
   };
 
+  const searchQuery = query.slice(query.indexOf('/') + 1);
   const isEmptyResults = query && !error && !isLoading && !images.length;
   const isNeedLoadMore = !isLoading && loadMore;
 
   return (
-    <AppWrapper>
+    <Layout>
       <GlobalStyle />
+      <Toaster toastOptions={{ duration: 1500 }} />
 
-      <SearchBar onSubmit={searchFormSubmit} />
+      <SearchBar onSubmit={searchFormSubmit} isLoading={isLoading} />
       {images.length > 0 && <ImageGallery images={images} />}
       {isLoading && <Loader />}
       {isEmptyResults && (
-        <Placeholder query={query}>
-          No any results by <b>"{query}"</b> request
+        <Placeholder>
+          🤷‍♂️ No any results by <b>{searchQuery}</b> request
         </Placeholder>
       )}
-      {error && (
-        <Placeholder query={query}>Whooops.. {error.message}</Placeholder>
-      )}
-      {isNeedLoadMore && <LoadMoreBtn onClick={incrementPage} />}
-    </AppWrapper>
+      {error && <Placeholder>❌ Whooops.. {error.message}</Placeholder>}
+      {isNeedLoadMore && <LoadMoreBtn onLoadMore={handleLoadMore} />}
+    </Layout>
   );
 };

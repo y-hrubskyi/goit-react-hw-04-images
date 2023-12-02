@@ -1,22 +1,23 @@
+import toast from 'react-hot-toast';
 import { Searchbar, Form, Button, IconSearch, Input } from './SearchBar.styled';
 
-export const SearchBar = ({ onSubmit }) => {
+export const SearchBar = ({ onSubmit, isLoading }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const searchQuery = e.target.elements.query.value;
-    if (!searchQuery) {
-      alert('Enter search query!');
+    const query = e.target.elements.query.value.trim();
+    if (query === '') {
+      toast.error('Enter search query!');
       return;
     }
 
-    onSubmit(searchQuery);
+    onSubmit(query);
   };
 
   return (
     <Searchbar>
       <Form onSubmit={handleSubmit}>
-        <Button type="submit" aria-label="search">
+        <Button type="submit" disabled={isLoading} aria-label="search">
           <IconSearch />
         </Button>
 
