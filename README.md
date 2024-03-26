@@ -1,4 +1,4 @@
-# Image Finder
+# Image Finder App
 
 ## Overview
 
