@@ -27,6 +27,8 @@ Include demo GIF to visually showcase the application.
 ## Tech Stack
 
 - **Frontend:**
+  - [Create React App](https://create-react-app.dev/): Officially supported way
+    to create single-page React applications.
   - React: A popular JavaScript library for building user interfaces.
   - Styled Components: For styling and theming components in a dynamic and
     maintainable way.
@@ -36,8 +38,6 @@ Include demo GIF to visually showcase the application.
     applications.
   - react-loader-spinner: Component library for displaying loading spinners in
     React applications.
-  - Create React App: Officially supported way to create single-page React
-    applications.
 - **Backend:**
   - [Pixabay API](https://pixabay.com/api/docs/): Used on the backend to fetch
     images for display on the frontend.
