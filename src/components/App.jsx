@@ -7,7 +7,7 @@ import { Loader } from 'components/Loader/Loader';
 import { Placeholder } from 'components/Placeholder/Placeholder';
 import { LoadMoreBtn } from 'components/LoadMoreBtn/LoadMoreBtn';
 
-import { GlobalStyle } from './GlobalStyle';
+import { GlobalStyle } from '../styles/GlobalStyle';
 import { Layout } from './App.styled';
 
 import * as API from 'services/api';
