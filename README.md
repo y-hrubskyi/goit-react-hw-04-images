@@ -1,113 +1,98 @@
-# React homework template
+# Image Finder
 
-Этот проект был создан при помощи
-[Create React App](https://github.com/facebook/create-react-app). Для знакомства
-и настройки дополнительных возможностей
-[обратись к документации](https://facebook.github.io/create-react-app/docs/getting-started).
+## Overview
 
-## Создание репозитория по шаблону
+Image Finder App is a tool for searching and viewing images by keywords. Open
+the door to an endless world of visual content and find exactly what you need in
+an instant.
 
-Используй этот репозиторий организации GoIT как шаблон для создания репозитория
-своего проекта. Для этого нажми на кнопку `«Use this template»` и выбери опцию
-`«Create a new repository»`, как показано на изображении.
+## Preview
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+Include demo GIF to visually showcase the application.
 
-На следующем шаге откроется страница создания нового репозитория. Заполни поле
-его имени, убедись что репозиторий публичный, после чего нажми кнопку
-`«Create repository from template»`.
+![Preview](/public/preview.gif)
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+## Features
 
-После того как репозиторий будет создан, необходимо перейти в настройки
-созданного репозитория на вкладку `Settings` > `Actions` > `General` как
-показано на изображении.
+- **Keyword Search:** Quickly find desired images by entering keywords or
+  phrases.
+- **Results Viewing:** Conveniently browse through the found images in a
+  user-friendly interface.
+- **Detailed Inspection:** Explore images in detail by zooming in and viewing
+  additional information.
+- **Responsive Design:** Ensures your website looks great on any device,
+  providing a seamless user experience across desktops, tablets, and
+  smartphones.
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+## Tech Stack
 
-Проскролив страницу до самого конца, в секции `«Workflow permissions»` выбери
-опцию `«Read and write permissions»` и поставь галочку в чекбоксе. Это
-необходимо для автоматизации процесса деплоя проекта.
+- **Frontend:**
+  - React: A popular JavaScript library for building user interfaces.
+  - Styled Components: For styling and theming components in a dynamic and
+    maintainable way.
+  - Axios: JavaScript library for making HTTP requests from the browser.
+  - react-hot-toast: React notifications library for displaying toast messages.
+  - react-modal: Component library for creating modal windows in React
+    applications.
+  - react-loader-spinner: Component library for displaying loading spinners in
+    React applications.
+  - Create React App: Officially supported way to create single-page React
+    applications.
+- **Backend:**
+  - [Pixabay API](https://pixabay.com/api/docs/): Used on the backend to fetch
+    images for display on the frontend.
+- **Deployment:**
+  - GitHub Pages: Hosting platform for deploying the frontend.
+- **Version Control:**
+  - Git: Distributed version control system for tracking changes in the
+    codebase.
+- **Development Tools:**
+  - Visual Studio Code: An integrated development environment for efficient
+    coding.
+  - GitHub: Version control platform for collaborative development.
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+## Project Structure
 
-Теперь у тебя есть личный репозиторий проекта, со структурой файлов и папок
-репозитория-шаблона. Далее работай с ним как с любым другим личным репозиторием,
-клонируй его себе на компьютер, пиши код, делай коммиты и отправляй их на
-GitHub.
-
-## Подготовка к работе
-
-1. Убедись что на компьютере установлена LTS-версия Node.js.
-   [Скачай и установи](https://nodejs.org/en/) её если необходимо.
-2. Установи базовые зависимости проекта командой `npm install`.
-3. Запусти режим разработки, выполнив команду `npm start`.
-4. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).
-   Эта страница будет автоматически перезагружаться после сохранения изменений в
-   файлах проекта.
-
-## Деплой
-
-Продакшн версия проекта будет автоматически проходить линтинг, собираться и
-деплоиться на GitHub Pages, в ветку `gh-pages`, каждый раз когда обновляется
-ветка `main`. Например, после прямого пуша или принятого пул-реквеста. Для этого
-необходимо в файле `package.json` отредактировать поле `homepage`, заменив
-`your_username` и `your_repo_name` на свои, и отправить изменения на GitHub.
-
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
+```plaintext
+goit-react-hw-04-images/
+|-- public/               # Public assets and files
+|-- src/                  # Source code
+|   |-- components/      # Reusable React components
+|   |-- services/        # Services for handling API calls, etc.
+|   |-- styles/          # Global and component-specific styles
+|   |-- index.js         # Entry point for rendering the React app
+|-- package.json         # Project configuration and dependencies
 ```
 
-Далее необходимо зайти в настройки GitHub-репозитория (`Settings` > `Pages`) и
-выставить раздачу продакшн версии файлов из папки `/root` ветки `gh-pages`, если
-это небыло сделано автоматически.
+## Getting Started
 
-![GitHub Pages settings](./assets/repo-settings.png)
+These instructions will help you set up and run the Image Finder App on your
+local machine for development and testing purposes.
 
-### Статус деплоя
+### Prerequisites
 
-Статус деплоя крайнего коммита отображается иконкой возле его идентификатора.
+- Node.js and npm installed
 
-- **Желтый цвет** - выполняется сборка и деплой проекта.
-- **Зеленый цвет** - деплой завершился успешно.
-- **Красный цвет** - во время линтинга, сборки или деплоя произошла ошибка.
+### Installation
 
-Более детальную информацию о статусе можно посмотреть кликнув по иконке, и в
-выпадающем окне перейти по ссылке `Details`.
+1.  Clone the repository:
 
-![Deployment status](./assets/deploy-status.png)
+    ```bash
+    git clone https://github.com/y-hrubskyi/goit-react-hw-04-images.git
 
-### Живая страница
+    cd goit-react-hw-04-images
+    ```
 
-Через какое-то время, обычно пару минут, живую страницу можно будет посмотреть
-по адресу указанному в отредактированном свойстве `homepage`. Например, вот
-ссылка на живую версию для этого репозитория
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
+2.  Install dependencies:
 
-Если открывается пустая страница, убедись что во вкладке `Console` нет ошибок
-связанных с неправильными путями к CSS и JS файлам проекта (**404**). Скорее
-всего у тебя неправильное значение свойства `homepage` в файле `package.json`.
+    ```bash
+    npm install
+    ```
 
-### Маршрутизация
+### Run the application:
 
-Если приложение использует библиотеку `react-router-dom` для маршрутизации,
-необходимо дополнительно настроить компонент `<BrowserRouter>`, передав в пропе
-`basename` точное название твоего репозитория. Слеш в начале строки обязателен.
+1. Run app using following command:
 
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-```
-
-## Как это работает
-
-![How it works](./assets/how-it-works.png)
-
-1. После каждого пуша в ветку `main` GitHub-репозитория, запускается специальный
-   скрипт (GitHub Action) из файла `.github/workflows/deploy.yml`.
-2. Все файлы репозитория копируются на сервер, где проект инициализируется и
-   проходит линтинг и сборку перед деплоем.
-3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
-   отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
-   скрипта будет указано в чем проблема.
+   ```bash
+   npm start
+   ```
