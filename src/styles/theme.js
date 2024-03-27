@@ -9,6 +9,6 @@ export const theme = Object.freeze({
     md: '8px',
     lg: '16px',
   },
-  transition: (prop = '') => `${prop} 250ms cubic-bezier(0.4, 0, 0.2, 1);`,
+  transition: (prop = '') => `${prop} 250ms cubic-bezier(0.4, 0, 0.2, 1)`,
   spacing: value => `${value * 4}px`,
 });
