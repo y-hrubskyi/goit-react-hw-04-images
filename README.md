@@ -1,5 +1,10 @@
 # Image Finder App
 
+This project was bootstrapped with
+[Create React App](https://github.com/facebook/create-react-app). To get
+acquainted and configure additional features
+[refer to documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
 ## Overview
 
 Image Finder App is a tool for searching and viewing images by keywords. Open
@@ -27,8 +32,6 @@ Include demo GIF to visually showcase the application.
 ## Tech Stack
 
 - **Frontend:**
-  - [Create React App](https://create-react-app.dev/): Officially supported way
-    to create single-page React applications.
   - React: A popular JavaScript library for building user interfaces.
   - Styled Components: For styling and theming components in a dynamic and
     maintainable way.
@@ -39,8 +42,8 @@ Include demo GIF to visually showcase the application.
   - react-loader-spinner: Component library for displaying loading spinners in
     React applications.
 - **Backend:**
-  - [Pixabay API](https://pixabay.com/api/docs/): Used on the backend to fetch
-    images for display on the frontend.
+  - [Pixabay API](https://pixabay.com/api/docs/): External API as the backend
+    for retrieving data.
 - **Deployment:**
   - GitHub Pages: Hosting platform for deploying the frontend.
 - **Version Control:**
@@ -57,11 +60,11 @@ Include demo GIF to visually showcase the application.
 goit-react-hw-04-images/
 |-- public/               # Public assets and files
 |-- src/                  # Source code
-|   |-- components/      # Reusable React components
-|   |-- services/        # Services for handling API calls, etc.
-|   |-- styles/          # Global and component-specific styles
-|   |-- index.js         # Entry point for rendering the React app
-|-- package.json         # Project configuration and dependencies
+|   |-- components/       # Main App component and React components
+|   |-- services/         # Services for handling API calls, etc.
+|   |-- styles/           # Global and theme styles
+|   |-- index.js          # Entry point for rendering the React app
+|-- package.json          # Project configuration and dependencies
 ```
 
 ## Getting Started
