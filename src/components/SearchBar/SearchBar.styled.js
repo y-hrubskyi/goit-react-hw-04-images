@@ -43,7 +43,8 @@ export const Button = styled.button`
 
   transition: ${p => p.theme.transition('opacity')};
 
-  &:hover {
+  &:hover,
+  &:focus {
     opacity: 1;
   }
 `;
