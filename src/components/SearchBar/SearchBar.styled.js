@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { BiSearch } from 'react-icons/bi';
+
+import { ReactComponent as Search } from 'assets/icons/search.svg';
 
 export const Searchbar = styled.header`
   position: sticky;
@@ -23,8 +24,11 @@ export const Searchbar = styled.header`
 export const Form = styled.form`
   display: flex;
   align-items: center;
+  gap: ${p => p.theme.spacing(1)};
   width: 100%;
   max-width: 600px;
+  padding-left: ${p => p.theme.spacing(2)};
+  padding-right: ${p => p.theme.spacing(2)};
 
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.sm};
@@ -35,11 +39,12 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 0 0 ${p => p.theme.spacing(2)};
+  padding: 0;
 
   border: 0;
   opacity: 0.5;
   outline: none;
+  background-color: transparent;
 
   transition: ${p => p.theme.transition('opacity')};
 
@@ -49,9 +54,9 @@ export const Button = styled.button`
   }
 `;
 
-export const IconSearch = styled(BiSearch)`
-  width: 20px;
-  height: 20px;
+export const SearchIcon = styled(Search)`
+  width: 16px;
+  height: 16px;
 `;
 
 export const Input = styled.input`
@@ -65,6 +70,7 @@ export const Input = styled.input`
 
   border: none;
   outline: none;
+  background-color: transparent;
 
   &::placeholder {
     font: inherit;

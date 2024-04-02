@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { Searchbar, Form, Button, IconSearch, Input } from './SearchBar.styled';
+import { Button, Form, Input, SearchIcon, Searchbar } from './SearchBar.styled';
 
 export const SearchBar = ({ onSubmit, isLoading }) => {
   const handleSubmit = e => {
@@ -18,7 +18,7 @@ export const SearchBar = ({ onSubmit, isLoading }) => {
     <Searchbar>
       <Form onSubmit={handleSubmit}>
         <Button type="submit" disabled={isLoading} aria-label="search">
-          <IconSearch />
+          <SearchIcon />
         </Button>
 
         <Input

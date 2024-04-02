@@ -60,6 +60,7 @@ Include demo GIF to visually showcase the application.
 goit-react-hw-04-images/
 |-- public/               # Public assets and files
 |-- src/                  # Source code
+|   |-- assets/           # Static assets such as images, icons, etc.
 |   |-- components/       # Main App component and React components
 |   |-- services/         # Services for handling API calls, etc.
 |   |-- styles/           # Global and theme styles
