@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { SearchBar } from 'components/SearchBar/SearchBar';
-import { ImageGallery } from 'components/ImageGallery/ImageGallery';
-import { Loader } from 'components/Loader/Loader';
-import { Placeholder } from 'components/Placeholder/Placeholder';
-import { LoadMoreBtn } from 'components/LoadMoreBtn/LoadMoreBtn';
+import { SearchBar } from './SearchBar/SearchBar';
+import { Gallery } from './Gallery/Gallery';
+import { Loader } from './Loader/Loader';
+import { Placeholder } from './Placeholder/Placeholder';
+import { LoadMoreBtn } from './LoadMoreBtn/LoadMoreBtn';
 
-import { GlobalStyle } from '../styles/GlobalStyle';
+import { GlobalStyle } from 'styles/GlobalStyle';
 import { Layout } from './App.styled';
 
 import * as API from 'services/api';
@@ -73,7 +73,7 @@ export const App = () => {
       <Toaster toastOptions={{ duration: 1500 }} />
 
       <SearchBar onSubmit={searchFormSubmit} isLoading={isLoading} />
-      {images.length > 0 && <ImageGallery images={images} />}
+      {images.length > 0 && <Gallery images={images} />}
       {isLoading && <Loader />}
       {isEmptyResults && (
         <Placeholder>

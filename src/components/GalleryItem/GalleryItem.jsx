@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { ImageModal } from 'components/ImageModal/ImageModal';
-import { Image, Item } from './ImageGalleryItem.styled';
+import { Image, Item } from './GalleryItem.styled';
 
-export const ImageGalleryItem = ({ smallImg, largeImg, tags }) => {
+export const GalleryItem = ({ smallImg, largeImg, tags }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {

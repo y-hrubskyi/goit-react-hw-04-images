@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Gallery = styled.ul`
+export const GalleryList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: ${p => p.theme.spacing(4)};
