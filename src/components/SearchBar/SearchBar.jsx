@@ -17,7 +17,7 @@ export const SearchBar = ({ onSubmit, isLoading }) => {
   return (
     <Searchbar>
       <Form onSubmit={handleSubmit}>
-        <Button type="submit" disabled={isLoading} aria-label="search">
+        <Button type="submit" disabled={isLoading} aria-label="search by query">
           <SearchIcon />
         </Button>
 
